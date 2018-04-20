@@ -58,6 +58,7 @@
 
   <script>
   const keyElements = Array.from(document.querySelectorAll('.key'));
+
   keyElements.forEach((keyElement) => {
     keyElement.addEventListener('transitionend', function (event) {
       if (event.propertyName === 'transform') {
@@ -66,16 +67,30 @@
     })
   });
 
-  document.addEventListener('keydown', function(event) {
-    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
-    const key = document.querySelector(`div[data-key="${event.keyCode}"]`);
-    if (!audio) return;
+  document.addEventListener('keydown', handleKeyDown);
 
+  function handleKeyDown (event) {
+    playSound(event);
+    addPlayingClassToKey(event);
+  }
+
+  function playSound (event) {
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    if (audio) playSoundFromStart(audio);
+  }
+
+  function playSoundFromStart(audio) {
     audio.currentTime = 0;
     audio.play();
+  }
 
-    key.classList.add('playing');
-  });
+  function addPlayingClassToKey (event) {
+    const key = document.querySelector(`div[data-key="${event.keyCode}"]`);
+    if (key) {
+      key.classList.add('playing');
+    }
+  }
+
   </script>
 
 </body>
