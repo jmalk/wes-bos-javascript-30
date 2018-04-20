@@ -10,7 +10,7 @@
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
-        <div class="hand min-hand"></div>
+        <div class="hand minute-hand"></div>
         <div class="hand second-hand"></div>
       </div>
     </div>
@@ -74,13 +74,21 @@
     function tick () {
       const date = new Date();
       const seconds = date.getSeconds();
+      const minutes = date.getMinutes();
       updateSecondHand(seconds);
+      updateMinuteHand(minutes);
     }
 
     function updateSecondHand (seconds) {
       const secondHandElement = document.getElementsByClassName('second-hand')[0];
       const angleOfSecondHand = (seconds * (360/60)) + 90;
       secondHandElement.style.transform = `rotate(${angleOfSecondHand}deg)`;
+    }
+
+    function updateMinuteHand (minutes) {
+      const minuteHandElement = document.getElementsByClassName('minute-hand')[0];
+      const angleOfMinuteHand = (minutes * (360/60)) + 90;
+      minuteHandElement.style.transform = `rotate(${angleOfMinuteHand}deg)`;
     }
 
   </script>
