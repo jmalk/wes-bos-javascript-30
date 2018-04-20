@@ -73,13 +73,13 @@
     window.setInterval(tick, 1000);
 
     function tick () {
-      const date = new Date();
-      const seconds = date.getSeconds();
-      const minutes = date.getMinutes();
-      const hours = date.getHours();
-      updateSecondHand(seconds);
-      updateMinuteHand(minutes);
-      updateHourHand(hours);
+      updateTime(new Date())
+    }
+
+    function updateTime (date) {
+      updateSecondHand(date.getSeconds());
+      updateMinuteHand(date.getMinutes());
+      updateHourHand(date.getHours());
     }
 
     function updateSecondHand (seconds) {
