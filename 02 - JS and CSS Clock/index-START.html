@@ -69,7 +69,19 @@
   </style>
 
   <script>
+    window.setInterval(tick, 1000);
 
+    function tick () {
+      const date = new Date();
+      const seconds = date.getSeconds();
+      updateSecondHand(seconds);
+    }
+
+    function updateSecondHand (seconds) {
+      const secondHandElement = document.getElementsByClassName('second-hand')[0];
+      const angleOfSecondHand = (seconds * (360/60)) + 90;
+      secondHandElement.style.transform = `rotate(${angleOfSecondHand}deg)`;
+    }
 
   </script>
 </body>
