@@ -75,8 +75,10 @@
       const date = new Date();
       const seconds = date.getSeconds();
       const minutes = date.getMinutes();
+      const hours = date.getHours();
       updateSecondHand(seconds);
       updateMinuteHand(minutes);
+      updateHourHand(hours);
     }
 
     function updateSecondHand (seconds) {
@@ -89,6 +91,13 @@
       const minuteHandElement = document.getElementsByClassName('minute-hand')[0];
       const angleOfMinuteHand = (minutes * (360/60)) + 90;
       minuteHandElement.style.transform = `rotate(${angleOfMinuteHand}deg)`;
+    }
+
+    function updateHourHand (hours) {
+      const hoursOfTwelveHourClock = hours % 12;
+      const hourHandElement = document.getElementsByClassName('hour-hand')[0];
+      const angleOfHourHand = (hoursOfTwelveHourClock * (360/12)) + 90;
+      hourHandElement.style.transform = `rotate(${angleOfHourHand}deg)`;
     }
 
   </script>
