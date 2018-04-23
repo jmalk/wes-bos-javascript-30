@@ -128,11 +128,20 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
 
-    const inventorsAlphabetisedByLastName = inventors.sort((inventorA, inventorB) => {
-      return inventorA.last.toUpperCase().charCodeAt(0) - inventorB.last.toUpperCase().charCodeAt(0);
+    const peopleAlphabetisedByLastName = people.sort((a, b) => {
+      const upperCaseLastNameA = a.split(',')[0].toUpperCase();
+      const upperCaseLastNameB = b.split(',')[0].toUpperCase();
+
+      if (upperCaseLastNameA < upperCaseLastNameB) {
+        return -1;
+      } else if (upperCaseLastNameA > upperCaseLastNameB) {
+        return 1;
+      } else {
+        return 0;
+      }
     });
 
-    console.table(inventorsAlphabetisedByLastName);
+    console.table(peopleAlphabetisedByLastName);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
