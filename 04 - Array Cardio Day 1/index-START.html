@@ -147,6 +147,19 @@
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
+    const tallyOfOccurrences = data.reduce(tally, {});
+
+    function tally (currentTallies, item) {
+      if (currentTallies[item] === undefined) {
+        currentTallies[item] = 1;
+      } else {
+        currentTallies[item] += 1;
+      }
+      return currentTallies;
+    }
+
+    console.table(tallyOfOccurrences);
+
   </script>
 </body>
 </html>
