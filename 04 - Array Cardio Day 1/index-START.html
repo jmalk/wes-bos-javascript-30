@@ -81,9 +81,49 @@
 
     console.table(inventorsByYearsLived);
 
-    // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
-    // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+    // 6. create a list of "Boulevards in Paris that contain 'de' anywhere in the name
+    // https://en.wikipedia.org/wiki/Category:"Boulevards_in_Paris
 
+    const boulevardsInParis = [
+      "Boulevard Auguste-Blanqui",
+      "Boulevard Barbès",
+      "Boulevard Beaumarchais",
+      "Boulevard de l'Amiral-Bruix",
+      "Boulevard des Capucines",
+      "Boulevard de la Chapelle",
+      "Boulevard de Clichy",
+      "Boulevard du Crime",
+      "Boulevard Haussmann",
+      "Boulevard de l'Hôpital",
+      "Boulevard des Italiens",
+      "Boulevard de la Madeleine",
+      "Boulevard de Magenta",
+      "Boulevard Montmartre",
+      "Boulevard du Montparnasse",
+      "Boulevard Raspail",
+      "Boulevard Richard-Lenoir",
+      "Boulevard de Rochechouart",
+      "Boulevard Saint-Germain",
+      "Boulevard Saint-Michel",
+      "Boulevard de Sébastopol",
+      "Boulevard de Strasbourg",
+      "Boulevard du Temple",
+      "Boulevard Voltaire",
+      "Boulevard de la Zone"
+    ];
+
+    const boulevardsInParisContainingDe = boulevardsInParis.filter(containsDe);
+
+    function containsDe (string) {
+      if (typeof string !== 'string') {
+        console.warn(`Expected type 'string', got type ${typeof string}`);
+        return false;
+      }
+
+      return string.match(/de/);
+    }
+
+    console.log(`Boulevards in Paris that contain 'de' anywhere in their name: ${boulevardsInParisContainingDe}`);
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
