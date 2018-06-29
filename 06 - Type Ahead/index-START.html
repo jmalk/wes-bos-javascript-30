@@ -30,13 +30,23 @@ function findMatches (phraseToMatch, cities) {
   });
 }
 
+function highlight (text, searchTerm) {
+  const re = new RegExp(searchTerm, 'gi');
+  return text.replace(re, `<span class=hl>${searchTerm}</span>`)
+}
+
 function displayMatches () {
-  const matchingCities = findMatches(this.value, cities);
+  const searchTerm = this.value;
+
+  const matchingCities = findMatches(searchTerm, cities);
 
   const listOfCities = matchingCities.map(place => {
+    const placeName = `${place.city}, ${place.state}`;
+    const highlightedPlaceName = highlight(placeName, searchTerm);
+
     return `<li>
       <span class="name">
-        ${place.city}, ${place.state}
+        ${highlightedPlaceName}
       </span>
       <span class="population">
         ${place.population}
