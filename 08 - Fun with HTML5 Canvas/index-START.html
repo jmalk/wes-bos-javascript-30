@@ -5,25 +5,28 @@
   <title>HTML5 Canvas</title>
 </head>
 <body>
-<canvas id="draw" width="800" height="800"></canvas>
+<label for="color">Line Color</label>
+<input id="color" type="color" name="base" value="#26e0ca">
+
+<canvas id="draw" width="800" height="600"></canvas>
+
 <script>
   const canvas = document.querySelector('#draw');
   const ctx = canvas.getContext('2d');
+  const colorPicker = document.querySelector('#color');
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  ctx.strokeStyle = '#26e0ca';
-  ctx.lineJoin = 'round';
-  ctx.lineCap = 'round';
-  ctx.lineWidth = 100;
-
+  let color = '#26e0ca';
   let isDrawing = false;
   let lastX = 0;
   let lastY = 0;
 
-  let hue = 0;
-  let isLineGettingThicker = true;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  ctx.strokeStyle = color;
+  ctx.lineJoin = 'round';
+  ctx.lineCap = 'round';
+  ctx.lineWidth = 100;
 
   canvas.addEventListener('mousedown', onMouseDown);
   canvas.addEventListener('mousemove', draw);
@@ -42,27 +45,19 @@
   function draw (e) {
     if (!isDrawing) { return; }
 
-    ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+    ctx.strokeStyle = color;
 
     ctx.beginPath();
     ctx.moveTo(lastX, lastY);
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     [lastX, lastY] = [e.offsetX, e.offsetY];
-
-    hue++
-    if (hue >= 360) hue = 0;
-
-    if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-      isLineGettingThicker = !isLineGettingThicker;
-    }
-    if (isLineGettingThicker) {
-      ctx.lineWidth++;
-    } else {
-      ctx.lineWidth--;
-    }
-
   }
+
+  colorPicker.addEventListener('change', (event) => {
+    console.dir(event.target);
+    color = event.target.value;
+  })
 
 </script>
 
