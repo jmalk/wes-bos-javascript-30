@@ -18,28 +18,63 @@
     }
 
     // Regular
+    console.log('Howdy!');
 
     // Interpolated
+    console.log('Howdy there, %s, I am just like you.', 'HUMAN');
 
     // Styled
+    console.log('%c EMBIGGEN', 'font-size: 50px; background: red');
 
     // warning!
+    console.warn('Somethin ain\'t right.');
 
     // Error :|
+    console.error('Something is definitely wrong.');
 
     // Info
+    console.info('There\'s no such thing as a fish.');
 
     // Testing
+    const p = document.querySelector('p');
+
+    console.assert(p.classList.contains('nope'), 'Class not found.');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
-    // counting
+    console.table(dogs);
 
-    // timing
+    // Counting
+    console.count('dracula');
+    console.count('dracula');
+    console.count('dracula');
+    console.count('me out');
+    console.count('dracula');
+    console.count('dracula');
+    console.count('me out');
+
+    // Timing
+    console.time('Fetching data');
+    fetch('https://api.github.com/users/jmalk')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('Fetching data');
+        console.log(data);
+      });
 
   </script>
 </body>
