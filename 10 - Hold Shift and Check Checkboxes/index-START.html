@@ -99,6 +99,21 @@
   </div>
 
 <script>
+  let lastClicked = null;
+
+  const checkboxes = document.querySelectorAll('input[type=checkbox]');
+  checkboxes.forEach(function (element, index) {
+    element.addEventListener('click', function (event) {
+      if (event.shiftKey) {
+        for (var i=lastClicked; i<index; i++) {
+          if (!checkboxes[i].checked) {
+            checkboxes[i].click();
+          }
+        }
+      }
+      lastClicked = index;
+    });
+  });
 </script>
 </body>
 </html>
