@@ -102,18 +102,21 @@
   let lastClicked = null;
 
   const checkboxes = document.querySelectorAll('input[type=checkbox]');
-  checkboxes.forEach(function (element, index) {
+  checkboxes.forEach(addClickListener);
+
+  function addClickListener (element, index) {
     element.addEventListener('click', function (event) {
-      if (event.shiftKey) {
-        for (var i=lastClicked; i<index; i++) {
-          if (!checkboxes[i].checked) {
-            checkboxes[i].click();
-          }
+      if (event.shiftKey && this.checked) {
+        let lowerBound = Math.min(index, lastClicked);
+        let upperBound = Math.max(index, lastClicked);
+
+        for (var i=lowerBound; i<upperBound; i++) {
+          checkboxes[i].checked = true;
         }
       }
       lastClicked = index;
     });
-  });
+  };
 </script>
 </body>
 </html>
