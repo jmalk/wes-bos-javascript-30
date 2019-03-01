@@ -8,4 +8,6 @@ function $all(selector) {
 const video = $("video.player__video");
 const playButton = $('button[title="Toggle Play"]');
 
-playButton.onclick = video.play();
+playButton.onclick = function() {
+  video.play();
+};
