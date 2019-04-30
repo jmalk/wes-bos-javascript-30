@@ -6,8 +6,8 @@ function $all(selector) {
 }
 
 const video = $("video.player__video");
-const playButton = $('button[title="Toggle Play"]');
+const playPauseButton = $('button[title="Toggle Play"]');
 
-playButton.onclick = function() {
-  video.play();
+playPauseButton.onclick = function() {
+  video.paused ? video.play() : video.pause();
 };
