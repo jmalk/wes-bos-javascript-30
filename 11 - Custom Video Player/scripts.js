@@ -9,6 +9,7 @@ const video = $("video.player__video");
 const progressFilled = $('.progress__filled');
 const playPauseButton = $('button[title="Toggle Play"]');
 const skipBackButton = $('button[data-skip="-10"]');
+const skipForwardButton = $('button[data-skip="25"]');
 
 const playIcon = '►';
 const pauseIcon = '❚ ❚';
@@ -25,4 +26,8 @@ playPauseButton.onclick = function () {
 
 skipBackButton.onclick = function () {
   video.currentTime = video.currentTime - 10;
+};
+
+skipForwardButton.onclick = function () {
+  video.currentTime = video.currentTime + 25;
 };
