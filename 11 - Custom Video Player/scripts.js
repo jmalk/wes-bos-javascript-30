@@ -24,6 +24,13 @@ video.addEventListener('timeupdate', function () {
   progressFilled.style['flex-basis'] = `${percentageComplete}%`;
 });
 
+video.addEventListener('play', updatePlayPauseButton);
+video.addEventListener('pause', updatePlayPauseButton);
+
+function updatePlayPauseButton () {
+  playPauseButton.textContent = video.paused ? playIcon : pauseIcon;
+}
+
 progress.addEventListener('mousedown', function () {
   isSeeking = true;
 });
@@ -40,7 +47,6 @@ progress.addEventListener('mouseup', function () {
 
 playPauseButton.addEventListener('click', function () {
   video.paused ? video.play() : video.pause();
-  playPauseButton.textContent = video.paused ? playIcon : pauseIcon;
 });
 
 skipBackButton.addEventListener('click', function () {
