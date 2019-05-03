@@ -11,6 +11,7 @@ const playPauseButton = $('button[title="Toggle Play"]');
 const skipBackButton = $('button[data-skip="-10"]');
 const skipForwardButton = $('button[data-skip="25"]');
 const volumeInput = $('input[name="volume"]');
+const playbackRateInput = $('input[name="playbackRate"]');
 
 const playIcon = '►';
 const pauseIcon = '❚ ❚';
@@ -35,4 +36,8 @@ skipForwardButton.onclick = function () {
 
 volumeInput.addEventListener('input', function (event) {
   video.volume = event.srcElement.value;
+});
+
+playbackRateInput.addEventListener('input', function (event) {
+  video.playbackRate = event.srcElement.value;
 });
