@@ -19,10 +19,10 @@ const pauseIcon = '❚ ❚';
 
 let isSeeking = false;
 
-video.ontimeupdate = function () {
+video.addEventListener('timeupdate', function () {
   const percentageComplete = (video.currentTime / video.duration) * 100;
   progressFilled.style['flex-basis'] = `${percentageComplete}%`;
-};
+});
 
 progress.addEventListener('mousedown', function () {
   isSeeking = true;
@@ -38,18 +38,18 @@ progress.addEventListener('mouseup', function () {
   isSeeking = false;
 });
 
-playPauseButton.onclick = function () {
+playPauseButton.addEventListener('click', function () {
   video.paused ? video.play() : video.pause();
   playPauseButton.textContent = video.paused ? playIcon : pauseIcon;
-};
+});
 
-skipBackButton.onclick = function () {
+skipBackButton.addEventListener('click', function () {
   video.currentTime = video.currentTime - 10;
-};
+});
 
-skipForwardButton.onclick = function () {
+skipForwardButton.addEventListener('click', function () {
   video.currentTime = video.currentTime + 25;
-};
+});
 
 volumeInput.addEventListener('input', function (event) {
   video.volume = event.srcElement.value;
