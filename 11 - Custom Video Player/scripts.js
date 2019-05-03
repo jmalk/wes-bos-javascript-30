@@ -19,9 +19,7 @@ const pauseIcon = '❚ ❚';
 
 // Play and Pause
 video.addEventListener('click', togglePlay);
-playPauseButton.addEventListener('click', function () {
-  togglePlay();
-});
+playPauseButton.addEventListener('click', togglePlay);
 video.addEventListener('play', updatePlayPauseButton);
 video.addEventListener('pause', updatePlayPauseButton);
 
