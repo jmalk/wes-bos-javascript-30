@@ -7,6 +7,20 @@
 </head>
 <body>
 <script>
+  const keyPresses = [];
+  const secretCode = ['j', 'm', 'a', 'l', 'k'];
+
+  window.addEventListener('keyup', (event) => {
+    keyPresses.push(event.key);
+
+    // Keep only enough key presses to compare to secret code
+    keyPresses.splice(0, keyPresses.length - secretCode.length);
+
+    if (keyPresses.join().includes(secretCode.join())) {
+      console.log('WIN');
+      cornify_add();
+    }
+  });
 </script>
 </body>
 </html>
