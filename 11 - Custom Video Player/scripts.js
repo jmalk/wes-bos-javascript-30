@@ -10,6 +10,7 @@ const progressFilled = $('.progress__filled');
 const playPauseButton = $('button[title="Toggle Play"]');
 const skipBackButton = $('button[data-skip="-10"]');
 const skipForwardButton = $('button[data-skip="25"]');
+const volumeInput = $('input[name="volume"]');
 
 const playIcon = '►';
 const pauseIcon = '❚ ❚';
@@ -31,3 +32,7 @@ skipBackButton.onclick = function () {
 skipForwardButton.onclick = function () {
   video.currentTime = video.currentTime + 25;
 };
+
+volumeInput.addEventListener('input', function (event) {
+  video.volume = event.srcElement.value;
+});
