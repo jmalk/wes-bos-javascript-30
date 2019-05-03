@@ -15,7 +15,7 @@ const volumeInput = $('input[name="volume"]');
 const playIcon = '►';
 const pauseIcon = '❚ ❚';
 
-video.ontimeupdate = function (event) {
+video.ontimeupdate = function () {
   const percentageComplete = (video.currentTime / video.duration) * 100;
   progressFilled.style['flex-basis'] = `${percentageComplete}%`;
 };
