@@ -30,6 +30,28 @@
   const itemsList = document.querySelector('.plates');
   const items = [];
 
+  addItems.addEventListener('submit', addItem);
+
+  function addItem (event) {
+    event.preventDefault();
+    const newItemName = (this.querySelector('[name=item]')).value;
+    const newItem = {
+      name: newItemName,
+      ticked: false
+    };
+    items.push(newItem);
+    renderItemsList(items, itemsList);
+    this.reset();
+  }
+
+  function renderItemsList (items, itemsList) {
+    const newListElements = items.map(item => {
+      return `<li>${item.name}</li>`;
+    }).join('');
+    const newList = `<ul>${newListElements}</ul>`;
+    itemsList.innerHTML = newList;
+  }
+
 </script>
 
 
