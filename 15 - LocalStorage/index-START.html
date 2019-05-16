@@ -48,8 +48,11 @@
   }
 
   function renderItemsList (items, itemsList) {
-    const newList = items.map(item => {
-      return `<li>${item.name}</li>`;
+    const newList = items.map((item, index) => {
+      return `<li>
+        <input type="checkbox" data-index=${index} id="item${index}" ${item.done ? 'checked' : ''}/>
+        <label for="item${index}">${item.name}</label>
+      </li>`;
     }).join('');
     itemsList.innerHTML = newList;
   }
