@@ -48,10 +48,9 @@
   }
 
   function renderItemsList (items, itemsList) {
-    const newListElements = items.map(item => {
+    const newList = items.map(item => {
       return `<li>${item.name}</li>`;
     }).join('');
-    const newList = `<ul>${newListElements}</ul>`;
     itemsList.innerHTML = newList;
   }
 
