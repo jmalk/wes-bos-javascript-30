@@ -34,6 +34,9 @@
 
   addItems.addEventListener('submit', addItem);
 
+  itemsList.addEventListener('click', toggleTicked);
+
+
   function addItem (event) {
     event.preventDefault();
     const newItemName = (this.querySelector('[name=item]')).value;
@@ -50,11 +53,18 @@
   function renderItemsList (items, itemsList) {
     const newList = items.map((item, index) => {
       return `<li>
-        <input type="checkbox" data-index=${index} id="item${index}" ${item.done ? 'checked' : ''}/>
+        <input type="checkbox" data-index=${index} id="item${index}" ${item.ticked ? 'checked' : ''}/>
         <label for="item${index}">${item.name}</label>
       </li>`;
     }).join('');
     itemsList.innerHTML = newList;
+  }
+
+  function toggleTicked (event) {
+    if (!event.target.matches('input')) return;
+
+    items[event.target.dataset.index].ticked = !items[event.target.dataset.index].ticked;
+    localStorage.setItem('items', JSON.stringify(items));
   }
 
 </script>
