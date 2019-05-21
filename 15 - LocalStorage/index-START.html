@@ -63,7 +63,9 @@
   function toggleTicked (event) {
     if (!event.target.matches('input')) return;
 
-    items[event.target.dataset.index].ticked = !items[event.target.dataset.index].ticked;
+    let index = event.target.dataset.index;
+
+    items[index].ticked = !items[index].ticked;
     localStorage.setItem('items', JSON.stringify(items));
   }
 
