@@ -32,24 +32,16 @@
   function $ (selector) {
     return document.querySelector(selector);
   }
-  const addItems = $('.add-items');
-  const itemsList = $('.plates');
-  const tickAllButton = $('#tick-all-button');
-  const untickAllButton = $('#untick-all-button');
-  const deleteAllButton = $('#delete-all-button');
 
+  // Startup
   // TODO: How might we handle the state of this without all the functions mutating it as they feel like?
+  const itemsList = $('.plates');
   let items = JSON.parse(localStorage.getItem('items')) || [];
-
   renderItemsList(items, itemsList);
 
+  // Add items button
+  const addItems = $('.add-items');
   addItems.addEventListener('submit', addItem);
-
-  itemsList.addEventListener('click', toggleTicked);
-
-  tickAllButton.addEventListener('click', tickAllItems);
-  untickAllButton.addEventListener('click', untickAllItems);
-  deleteAllButton.addEventListener('click', deleteAllItems);
 
   function addItem (event) {
     event.preventDefault();
@@ -63,6 +55,9 @@
     this.reset();
   }
 
+  // Toggle tick single item
+  itemsList.addEventListener('click', toggleTicked);
+
   function toggleTicked (event) {
     if (!event.target.matches('input')) return;
 
@@ -72,12 +67,20 @@
     saveItemsToStorage(items);
   }
 
+  // Tick all button
+  const tickAllButton = $('#tick-all-button');
+  tickAllButton.addEventListener('click', tickAllItems);
+
   function tickAllItems () {
     items.forEach(item => {
       item.ticked = true;
     });
     updateItemsList(items, itemsList);
   }
+
+  // Untick all button
+  const untickAllButton = $('#untick-all-button');
+  untickAllButton.addEventListener('click', untickAllItems);
 
   function untickAllItems () {
     items.forEach(item => {
@@ -86,11 +89,16 @@
     updateItemsList(items, itemsList);
   }
 
+  // Delete all button
+  const deleteAllButton = $('#delete-all-button');
+  deleteAllButton.addEventListener('click', deleteAllItems);
+
   function deleteAllItems () {
     items = [];
     updateItemsList(items, itemsList);
   }
 
+  // Functions to update state and view
   function updateItemsList (items, itemsList) {
     saveItemsToStorage(items);
     renderItemsList(items, itemsList);
