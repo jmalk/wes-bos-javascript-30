@@ -25,16 +25,18 @@
     </form>
     <button id='tick-all-button'>Tick all</button>
     <button id='untick-all-button'>Untick all</button>
+    <button id='delete-all-button'>Delete all</button>
   </div>
 
 <script>
-  // TODO: Make buttons to "Clear all", "Tick all", "Untick all".
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
   const tickAllButton = document.querySelector('#tick-all-button');
   const untickAllButton = document.querySelector('#untick-all-button');
+  const deleteAllButton = document.querySelector('#delete-all-button');
 
-  const items = JSON.parse(localStorage.getItem('items')) || [];
+  // TODO: Handle the state of this without all the functions mutating it as they feel like?
+  let items = JSON.parse(localStorage.getItem('items')) || [];
 
   renderItemsList(items, itemsList);
 
@@ -44,6 +46,7 @@
 
   tickAllButton.addEventListener('click', tickAllItems);
   untickAllButton.addEventListener('click', untickAllItems);
+  deleteAllButton.addEventListener('click', deleteAllItems);
 
   function addItem (event) {
     event.preventDefault();
@@ -73,7 +76,6 @@
 
     let index = event.target.dataset.index;
 
-    // TODO: this is mutating state of a const which feels bad
     items[index].ticked = !items[index].ticked;
     localStorage.setItem('items', JSON.stringify(items));
   }
@@ -90,6 +92,12 @@
     items.forEach(item => {
       item.ticked = false;
     });
+    localStorage.setItem('items', JSON.stringify(items));
+    renderItemsList(items, itemsList);
+  }
+
+  function deleteAllItems () {
+    items = [];
     localStorage.setItem('items', JSON.stringify(items));
     renderItemsList(items, itemsList);
   }
