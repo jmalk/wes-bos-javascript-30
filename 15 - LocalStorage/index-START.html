@@ -56,9 +56,45 @@
       ticked: false
     };
     items.push(newItem);
-    localStorage.setItem('items', JSON.stringify(items));
-    renderItemsList(items, itemsList);
+    updateItemsList(items, itemsList);
     this.reset();
+  }
+
+  function toggleTicked (event) {
+    if (!event.target.matches('input')) return;
+
+    let index = event.target.dataset.index;
+
+    items[index].ticked = !items[index].ticked;
+    saveItemsToStorage(items);
+  }
+
+  function tickAllItems () {
+    items.forEach(item => {
+      item.ticked = true;
+    });
+    updateItemsList(items, itemsList);
+  }
+
+  function untickAllItems () {
+    items.forEach(item => {
+      item.ticked = false;
+    });
+    updateItemsList(items, itemsList);
+  }
+
+  function deleteAllItems () {
+    items = [];
+    updateItemsList(items, itemsList);
+  }
+
+  function updateItemsList (items, itemsList) {
+    saveItemsToStorage(items);
+    renderItemsList(items, itemsList);
+  }
+
+  function saveItemsToStorage (items) {
+    localStorage.setItem('items', JSON.stringify(items));
   }
 
   function renderItemsList (items, itemsList) {
@@ -70,38 +106,6 @@
     }).join('');
     itemsList.innerHTML = newList;
   }
-
-  function toggleTicked (event) {
-    if (!event.target.matches('input')) return;
-
-    let index = event.target.dataset.index;
-
-    items[index].ticked = !items[index].ticked;
-    localStorage.setItem('items', JSON.stringify(items));
-  }
-
-  function tickAllItems () {
-    items.forEach(item => {
-      item.ticked = true;
-    });
-    localStorage.setItem('items', JSON.stringify(items));
-    renderItemsList(items, itemsList);
-  }
-
-  function untickAllItems () {
-    items.forEach(item => {
-      item.ticked = false;
-    });
-    localStorage.setItem('items', JSON.stringify(items));
-    renderItemsList(items, itemsList);
-  }
-
-  function deleteAllItems () {
-    items = [];
-    localStorage.setItem('items', JSON.stringify(items));
-    renderItemsList(items, itemsList);
-  }
-
 </script>
 
 
