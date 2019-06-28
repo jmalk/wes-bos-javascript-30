@@ -29,13 +29,16 @@
   </div>
 
 <script>
-  const addItems = document.querySelector('.add-items');
-  const itemsList = document.querySelector('.plates');
-  const tickAllButton = document.querySelector('#tick-all-button');
-  const untickAllButton = document.querySelector('#untick-all-button');
-  const deleteAllButton = document.querySelector('#delete-all-button');
+  function $ (selector) {
+    return document.querySelector(selector);
+  }
+  const addItems = $('.add-items');
+  const itemsList = $('.plates');
+  const tickAllButton = $('#tick-all-button');
+  const untickAllButton = $('#untick-all-button');
+  const deleteAllButton = $('#delete-all-button');
 
-  // TODO: Handle the state of this without all the functions mutating it as they feel like?
+  // TODO: How might we handle the state of this without all the functions mutating it as they feel like?
   let items = JSON.parse(localStorage.getItem('items')) || [];
 
   renderItemsList(items, itemsList);
