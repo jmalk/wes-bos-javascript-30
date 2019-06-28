@@ -23,12 +23,17 @@
       <input type="text" name="item" placeholder="Item Name" required>
       <input type="submit" value="+ Add Item">
     </form>
+    <button id='tick-all-button'>Tick all</button>
+    <button id='untick-all-button'>Untick all</button>
   </div>
 
 <script>
   // TODO: Make buttons to "Clear all", "Tick all", "Untick all".
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
+  const tickAllButton = document.querySelector('#tick-all-button');
+  const untickAllButton = document.querySelector('#untick-all-button');
+
   const items = JSON.parse(localStorage.getItem('items')) || [];
 
   renderItemsList(items, itemsList);
@@ -37,6 +42,8 @@
 
   itemsList.addEventListener('click', toggleTicked);
 
+  tickAllButton.addEventListener('click', tickAllItems);
+  untickAllButton.addEventListener('click', untickAllItems);
 
   function addItem (event) {
     event.preventDefault();
@@ -66,8 +73,25 @@
 
     let index = event.target.dataset.index;
 
+    // TODO: this is mutating state of a const which feels bad
     items[index].ticked = !items[index].ticked;
     localStorage.setItem('items', JSON.stringify(items));
+  }
+
+  function tickAllItems () {
+    items.forEach(item => {
+      item.ticked = true;
+    });
+    localStorage.setItem('items', JSON.stringify(items));
+    renderItemsList(items, itemsList);
+  }
+
+  function untickAllItems () {
+    items.forEach(item => {
+      item.ticked = false;
+    });
+    localStorage.setItem('items', JSON.stringify(items));
+    renderItemsList(items, itemsList);
   }
 
 </script>
