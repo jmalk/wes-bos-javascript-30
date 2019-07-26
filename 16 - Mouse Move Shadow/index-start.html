@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Mouse Shadow</title>
+  </head>
+  <body>
+    <div class="hero">
+      <h1 contenteditable>🔥WOAH!</h1>
+    </div>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+    <style>
+      html {
+        color: black;
+        font-family: sans-serif;
+      }
 
-  <style>
-  html {
-    color:black;
-    font-family: sans-serif;
-  }
+      body {
+        margin: 0;
+      }
 
-  body {
-    margin: 0;
-  }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+      }
 
-  .hero {
-    min-height: 100vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color:black;
-  }
+      h1 {
+        text-shadow: 10px 10px 0 rgba(0, 0, 0, 1);
+        font-size: 100px;
+      }
+    </style>
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+    <script>
+      const hero = document.querySelector(".hero");
+      const title = hero.querySelector("h1");
 
-<script>
-</script>
-</body>
+      hero.addEventListener("mousemove", event => {
+        const x = event.x;
+        const y = event.y;
+
+        const midTitleX = title.offsetLeft + title.offsetWidth / 2;
+        const midTitleY = title.offsetTop + title.offsetHeight / 2;
+        // console.log({ midTitleX, midTitleY });
+
+        const xDiff = x - midTitleX;
+        const yDiff = y - midTitleY;
+
+        const xAdjust = -(yDiff / 2);
+        const yAdjust = -(xDiff / 2);
+
+        title.style.textShadow = `${xAdjust}px ${yAdjust}px rgba(0, 0, 0, 1)`;
+      });
+    </script>
+  </body>
 </html>
